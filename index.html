@@ -69,6 +69,32 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--text);line
 .btn-o:hover{background:rgba(82,183,136,.15);border-color:var(--g4);}
 @keyframes fu{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
 
+/* KID GUIDE */
+.kid{background:linear-gradient(180deg,#f5fff7 0%,#fff 100%);}
+.kid-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:1.6rem 0 1.2rem;}
+.kid-card{background:#fff;border:2px solid var(--g6);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);}
+.kid-card img{width:100%;height:160px;object-fit:cover;display:block;}
+.kid-card .kb{padding:1rem 1rem 1.15rem;}
+.kid-pill{display:inline-block;background:var(--g6);color:var(--g2);font-size:.68rem;font-weight:900;letter-spacing:1.4px;text-transform:uppercase;padding:.28rem .7rem;border-radius:100px;margin-bottom:.55rem;}
+.kid-card h3{font-family:var(--font-head);font-size:1rem;color:var(--g1);margin-bottom:.35rem;line-height:1.25;}
+.kid-card p{font-size:.97rem;color:var(--muted);line-height:1.75;}
+.kid-links{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1rem;}
+.kid-link{display:inline-flex;align-items:center;gap:.45rem;padding:.8rem 1.2rem;border-radius:999px;text-decoration:none;font-weight:800;font-size:.95rem;transition:transform .2s,box-shadow .2s;}
+.kid-link:hover{transform:translateY(-2px);}
+.kid-link.yt{background:#ffefef;color:#a61b1b;border:2px solid rgba(166,27,27,.15);}
+.kid-link.ggl{background:#eef7ff;color:#144e8c;border:2px solid rgba(20,78,140,.15);}
+.kid-note{background:linear-gradient(135deg,var(--g6),#fff);border-left:5px solid var(--g4);border-radius:0 16px 16px 0;padding:1.25rem 1.4rem;color:var(--g1);box-shadow:0 3px 16px rgba(27,67,50,.06);}
+.kid-note strong{display:block;font-size:1.02rem;margin-bottom:.35rem;}
+
+/* LIFECYCLE STRIP */
+.lc{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.9rem;margin:1.6rem 0 2rem;}
+.lc-step{background:#fff;border:2px solid var(--g6);border-radius:18px;padding:1rem 1rem 1.1rem;text-align:center;box-shadow:var(--shadow);position:relative;}
+.lc-step::after{content:'→';position:absolute;right:-.95rem;top:50%;transform:translateY(-50%);color:var(--g4);font-size:1.5rem;font-weight:900;}
+.lc-step:last-child::after{display:none;}
+.lc-ic{font-size:1.8rem;display:block;margin-bottom:.35rem;}
+.lc-step h4{font-size:1rem;color:var(--g1);margin-bottom:.3rem;line-height:1.25;}
+.lc-step p{font-size:.92rem;color:var(--muted);line-height:1.7;}
+
 /* SECTIONS */
 .ts{padding:4.5rem 2.8rem;border-bottom:2px solid rgba(27,67,50,.07);}
 .ts:nth-child(even){background:#fff;}
@@ -179,7 +205,6 @@ footer strong{color:var(--g4);}
 <a href="#main" class="skip-link">Skip to main content</a>
 <div id="prog"></div>
 
-<!-- SIDEBAR -->
 <nav id="sidebar" aria-label="Topics navigation">
   <div class="sb-header">
     <div class="sb-title">🌿 Plant Tissue Culture</div>
@@ -205,10 +230,8 @@ footer strong{color:var(--g4);}
 <div id="ov"></div>
 <button id="mBtn" aria-label="Open navigation menu"><span></span><span></span><span></span></button>
 
-<!-- MAIN -->
 <main id="main">
 
-<!-- ACCESSIBILITY BAR -->
 <div class="a11y" role="toolbar" aria-label="Text size controls">
   <span class="a11y-lbl">👁️ Text Size:</span>
   <button class="fb" id="fd" aria-label="Smaller text">A−</button>
@@ -216,21 +239,72 @@ footer strong{color:var(--g4);}
   <button class="fb" id="fu" aria-label="Larger text">A+</button>
 </div>
 
-<!-- HERO -->
 <section class="hero" aria-labelledby="hero-h">
   <div class="hero-leaf" aria-hidden="true">🍃</div>
   <div class="hero-leaf" aria-hidden="true">🌿</div>
   <div class="hero-badge">🎓 Complete Educational Guide</div>
   <h1 id="hero-h">Plant <em>Tissue Culture</em><br>Made Easy</h1>
-  <p class="hero-desc">Learn how scientists grow thousands of plants from a single tiny cell — each topic has its own picture and video so you never get lost!</p>
+  <p class="hero-desc">Learn how scientists grow many baby plants from one tiny plant piece. This page uses simple words, big pictures, and easy video links so kids can follow along.</p>
   <p class="hero-credits">By Dr. Nandita Sahana · Dept. of Biochemistry, UBKV</p>
   <div class="hero-cta">
+    <a href="#kid-guide" class="btn btn-o">📚 Kid Guide</a>
     <a href="#intro" class="btn btn-p">🌱 Start Learning</a>
     <a href="#applications" class="btn btn-o">🌾 See Real Uses</a>
   </div>
 </section>
 
-<!-- ══ 01 INTRODUCTION ══ -->
+<section class="ts kid" id="kid-guide">
+  <div class="th">
+    <div class="tn">00</div>
+    <div><div class="tlbl">Topic 0 · Super Simple Start</div><h2 class="ttl">Plant Tissue Culture in 4 Easy Pictures</h2></div>
+  </div>
+  <p class="tintro">If you want the shortest version first, start here. It shows the whole idea in a way younger students can understand fast.</p>
+
+  <div class="kid-grid rv">
+    <div class="kid-card">
+      <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=700&q=85" alt="Healthy green plant used as the starting parent plant for tissue culture">
+      <div class="kb">
+        <span class="kid-pill">1. Start</span>
+        <h3>Pick one healthy plant</h3>
+        <p>Scientists choose a strong plant and take a tiny piece from it, like a leaf tip, stem, or bud.</p>
+      </div>
+    </div>
+    <div class="kid-card">
+      <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=700&q=85" alt="Laboratory worker preparing clean culture bottles for plant tissue culture">
+      <div class="kb">
+        <span class="kid-pill">2. Clean</span>
+        <h3>Put it in a clean bottle</h3>
+        <p>The tiny piece goes into a sterile bottle with plant food, water, sugar, and a little hormone help.</p>
+      </div>
+    </div>
+    <div class="kid-card">
+      <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=700&q=85" alt="Small plant shoots growing inside laboratory bottles during tissue culture">
+      <div class="kb">
+        <span class="kid-pill">3. Grow</span>
+        <h3>Small shoots begin to grow</h3>
+        <p>In a warm, clean room, the piece starts making new shoots and roots, just like a plant nursery in a bottle.</p>
+      </div>
+    </div>
+    <div class="kid-card">
+      <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=700&q=85" alt="Young plants growing in a greenhouse after being removed from culture bottles">
+      <div class="kb">
+        <span class="kid-pill">4. Move out</span>
+        <h3>Take baby plants to soil</h3>
+        <p>After hardening, the tiny plants are moved to pots and then to the field, where they can keep growing.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="kid-note rv">
+    <strong>Watch or search for a video explanation</strong>
+    <div>Use these links if you want a simple video lesson that is easier to follow with a teacher or parent.</div>
+    <div class="kid-links">
+      <a class="kid-link yt" href="https://www.youtube.com/results?search_query=plant+tissue+culture+for+kids" target="_blank" rel="noopener">▶ YouTube videos</a>
+      <a class="kid-link ggl" href="https://www.google.com/search?q=plant+tissue+culture+easy+explanation+for+kids" target="_blank" rel="noopener">🔎 Google explanation</a>
+    </div>
+  </div>
+</section>
+
 <section class="ts" id="intro">
   <div class="th">
     <div class="tn">01</div>
@@ -238,13 +312,20 @@ footer strong{color:var(--g4);}
   </div>
   <p class="tintro">Imagine cutting a tiny piece from a plant and growing it into thousands of full plants inside a laboratory. No soil. No insects. No diseases. That is exactly what Plant Tissue Culture does — and it is changing agriculture across the world!</p>
 
+  <div class="lc rv">
+    <div class="lc-step"><span class="lc-ic">🌱</span><h4>Pick a healthy plant</h4><p>Choose the best parent plant with strong growth and no disease.</p></div>
+    <div class="lc-step"><span class="lc-ic">🧫</span><h4>Place in a clean bottle</h4><p>Put the tiny plant piece into sterile media with plant food.</p></div>
+    <div class="lc-step"><span class="lc-ic">🌿</span><h4>Baby shoots appear</h4><p>New shoots and roots begin to grow in the bottle.</p></div>
+    <div class="lc-step"><span class="lc-ic">🌳</span><h4>Move to soil</h4><p>Harden the plantlets and transfer them to pots or fields.</p></div>
+  </div>
+
   <div class="mr rv">
     <div class="mi">
       <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=800&q=85" alt="Scientist working in a plant tissue culture lab with green plantlets growing in sterile glass bottles on metal racks">
       <div class="ic">📸 Plant tissue culture lab — plantlets in sterile bottles</div>
     </div>
     <div class="mv">
-      <iframe src="https://www.youtube.com/embed/oPMpMRSHbzA" allowfullscreen loading="lazy" title="Introduction to Plant Tissue Culture — what it is and how it works"></iframe>
+      <iframe src="https://www.youtube.com/embed/i12Q7BJteKw" allowfullscreen loading="lazy" title="Introduction to Plant Tissue Culture — what it is and how it works"></iframe>
       <div class="vl">🎬 Introduction to Plant Tissue Culture</div>
     </div>
   </div>
@@ -268,7 +349,6 @@ footer strong{color:var(--g4);}
   </div>
 </section>
 
-<!-- ══ 02 HISTORY ══ -->
 <section class="ts" id="history">
   <div class="th">
     <div class="tn">02</div>
@@ -276,13 +356,20 @@ footer strong{color:var(--g4);}
   </div>
   <p class="tintro">Three brilliant scientists — working over 100 years ago — laid the entire foundation of plant tissue culture. Let's meet them and understand what each one discovered.</p>
 
+  <div class="lc rv">
+    <div class="lc-step"><span class="lc-ic">💡</span><h4>Idea begins</h4><p>Scientists wonder if cells can grow outside the plant.</p></div>
+    <div class="lc-step"><span class="lc-ic">🔬</span><h4>Experiments happen</h4><p>They test cells in special nutrient media.</p></div>
+    <div class="lc-step"><span class="lc-ic">🥕</span><h4>Proof appears</h4><p>Frederick Steward grows a full carrot plant from one cell.</p></div>
+    <div class="lc-step"><span class="lc-ic">🏛️</span><h4>Modern labs use it</h4><p>Tissue culture becomes a powerful tool for agriculture.</p></div>
+  </div>
+
   <div class="mr rv">
     <div class="mi">
       <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=85" alt="Historical photograph style portrait representing early scientists who discovered plant tissue culture techniques">
       <div class="ic">📸 The pioneers of plant tissue culture</div>
     </div>
     <div class="mv">
-      <iframe src="https://www.youtube.com/embed/1kLIY4m4vEE" allowfullscreen loading="lazy" title="History and pioneers of plant tissue culture explained"></iframe>
+      <iframe src="https://www.youtube.com/embed/6zb9ojQLjUk" allowfullscreen loading="lazy" title="History and pioneers of plant tissue culture explained"></iframe>
       <div class="vl">🎬 History of Plant Tissue Culture</div>
     </div>
   </div>
@@ -308,7 +395,6 @@ footer strong{color:var(--g4);}
   </div>
 </section>
 
-<!-- ══ 03 TOTIPOTENCY ══ -->
 <section class="ts" id="totipotency">
   <div class="th">
     <div class="tn">03</div>
@@ -316,13 +402,20 @@ footer strong{color:var(--g4);}
   </div>
   <p class="tintro">These two words sound complicated but the ideas are very simple! They explain WHY plant tissue culture is even possible — why a single cell can become an entire plant.</p>
 
+  <div class="lc rv">
+    <div class="lc-step"><span class="lc-ic">🧬</span><h4>One cell holds all DNA</h4><p>Every plant cell carries the full instruction book.</p></div>
+    <div class="lc-step"><span class="lc-ic">🔄</span><h4>Cell goes back</h4><p>Specialized cells lose their old job and become flexible.</p></div>
+    <div class="lc-step"><span class="lc-ic">🍯</span><h4>Callus forms</h4><p>The cells multiply into a soft lump of tissue.</p></div>
+    <div class="lc-step"><span class="lc-ic">🌱</span><h4>New plant grows</h4><p>The callus can turn into embryos, shoots, and roots.</p></div>
+  </div>
+
   <div class="mr rv">
     <div class="mi">
       <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=85" alt="Microscope view of dividing plant cells showing the process of totipotency and dedifferentiation">
       <div class="ic">📸 Plant cells under a microscope — each one carries the full plant blueprint</div>
     </div>
     <div class="mv">
-      <iframe src="https://www.youtube.com/embed/8Q-VeCLjhAQ" allowfullscreen loading="lazy" title="Totipotency and dedifferentiation explained with simple examples"></iframe>
+      <iframe src="https://www.youtube.com/embed/rmwe2rtDu-s" allowfullscreen loading="lazy" title="Totipotency and dedifferentiation explained with simple examples"></iframe>
       <div class="vl">🎬 Totipotency Explained Simply</div>
     </div>
   </div>
@@ -364,7 +457,6 @@ footer strong{color:var(--g4);}
   </div>
 </section>
 
-<!-- ══ 04 EXPLANTS ══ -->
 <section class="ts" id="explants">
   <div class="th">
     <div class="tn">04</div>
@@ -372,13 +464,20 @@ footer strong{color:var(--g4);}
   </div>
   <p class="tintro">An <strong>explant</strong> is the tiny piece of plant material you take to start tissue culture. The good news — almost any part of a plant can work as an explant!</p>
 
+  <div class="lc rv">
+    <div class="lc-step"><span class="lc-ic">🌿</span><h4>Choose plant part</h4><p>Leaf, stem, root, bud, or sucker can be used.</p></div>
+    <div class="lc-step"><span class="lc-ic">✂️</span><h4>Cut tiny piece</h4><p>Scientists take the small piece that will start the culture.</p></div>
+    <div class="lc-step"><span class="lc-ic">🧴</span><h4>Sterilize it</h4><p>The explant is cleaned to remove germs and dust.</p></div>
+    <div class="lc-step"><span class="lc-ic">🧫</span><h4>Culture begins</h4><p>The clean explant is placed on nutrient media.</p></div>
+  </div>
+
   <div class="mr rv">
     <div class="mi">
       <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=85" alt="Different parts of a plant laid out showing leaves, stems, and roots that can be used as explants in tissue culture">
       <div class="ic">📸 Plant parts that can be used as explants</div>
     </div>
     <div class="mv">
-      <iframe src="https://www.youtube.com/embed/l9BY4Q7Z8r8" allowfullscreen loading="lazy" title="Types of explants used in plant tissue culture with examples"></iframe>
+      <iframe src="https://www.youtube.com/embed/Kw3UxRmPduk" allowfullscreen loading="lazy" title="Types of explants used in plant tissue culture with examples"></iframe>
       <div class="vl">🎬 Explants in Plant Tissue Culture</div>
     </div>
   </div>
@@ -400,7 +499,6 @@ footer strong{color:var(--g4);}
   </div>
 </section>
 
-<!-- ══ 05 TYPES ══ -->
 <section class="ts" id="types">
   <div class="th">
     <div class="tn">05</div>
@@ -408,13 +506,20 @@ footer strong{color:var(--g4);}
   </div>
   <p class="tintro">Scientists have developed several tissue culture techniques, each suited to different plant parts and different goals. Here are the 7 main types, explained simply.</p>
 
+  <div class="lc rv">
+    <div class="lc-step"><span class="lc-ic">🧫</span><h4>Start with tissue</h4><p>A plant part or cell is taken into the lab.</p></div>
+    <div class="lc-step"><span class="lc-ic">⚗️</span><h4>Choose the method</h4><p>Callus, embryo, meristem, or anther culture may be used.</p></div>
+    <div class="lc-step"><span class="lc-ic">🌿</span><h4>Grow under control</h4><p>The right media and hormones guide the cells.</p></div>
+    <div class="lc-step"><span class="lc-ic">🌳</span><h4>Get new plants</h4><p>The goal is healthy, useful plants for people to grow.</p></div>
+  </div>
+
   <div class="mr rv">
     <div class="mi">
       <img src="https://images.unsplash.com/photo-1581093458791-9d42e3c2fd15?w=800&q=85" alt="Multiple different types of plant tissue culture growing in various laboratory flasks and petri dishes">
       <div class="ic">📸 Different culture types in the laboratory</div>
     </div>
     <div class="mv">
-      <iframe src="https://www.youtube.com/embed/gEOH9fQ6FGU" allowfullscreen loading="lazy" title="Types of plant tissue culture explained with diagrams and examples"></iframe>
+      <iframe src="https://www.youtube.com/embed/IiBQsfXC-iI" allowfullscreen loading="lazy" title="Types of plant tissue culture explained with diagrams and examples"></iframe>
       <div class="vl">🎬 Types of Plant Tissue Culture</div>
     </div>
   </div>
@@ -430,7 +535,6 @@ footer strong{color:var(--g4);}
   </ul>
 </section>
 
-<!-- ══ 06 MEDIA ══ -->
 <section class="ts" id="media">
   <div class="th">
     <div class="tn">06</div>
@@ -438,13 +542,20 @@ footer strong{color:var(--g4);}
   </div>
   <p class="tintro">Culture media is the special "food" that nourishes plant cells in the lab. Without the right media, nothing grows! Think of it as a perfectly balanced meal — carefully designed for plant cells.</p>
 
+  <div class="lc rv">
+    <div class="lc-step"><span class="lc-ic">🧂</span><h4>Collect ingredients</h4><p>Scientists measure minerals, vitamins, sugar, and agar.</p></div>
+    <div class="lc-step"><span class="lc-ic">⚗️</span><h4>Mix the media</h4><p>The ingredients are dissolved in clean water.</p></div>
+    <div class="lc-step"><span class="lc-ic">📏</span><h4>Set the pH</h4><p>The acidity is adjusted so the plant cells can use it.</p></div>
+    <div class="lc-step"><span class="lc-ic">🧫</span><h4>Ready to feed plants</h4><p>The media is sterilized and used for tissue culture.</p></div>
+  </div>
+
   <div class="mr rv">
     <div class="mi">
       <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&q=85" alt="Laboratory worker in gloves carefully preparing plant tissue culture media in clean glass flasks">
       <div class="ic">📸 Preparing and dispensing culture media in the laboratory</div>
     </div>
     <div class="mv">
-      <iframe src="https://www.youtube.com/embed/F-M5xBBdkh0" allowfullscreen loading="lazy" title="How plant tissue culture media is prepared step by step"></iframe>
+      <iframe src="https://www.youtube.com/embed/DyXYBi0nZ2M" allowfullscreen loading="lazy" title="How plant tissue culture media is prepared step by step"></iframe>
       <div class="vl">🎬 How Culture Media is Prepared</div>
     </div>
   </div>
@@ -473,7 +584,6 @@ footer strong{color:var(--g4);}
   </div>
 </section>
 
-<!-- ══ 07 HORMONES ══ -->
 <section class="ts" id="hormones">
   <div class="th">
     <div class="tn">07</div>
@@ -481,13 +591,20 @@ footer strong{color:var(--g4);}
   </div>
   <p class="tintro">Hormones are the "remote control" of tissue culture! By changing the type and amount of hormones in the media, scientists can tell plant cells to form roots, form shoots, or just multiply as callus.</p>
 
+  <div class="lc rv">
+    <div class="lc-step"><span class="lc-ic">🌱</span><h4>High auxin</h4><p>The media tells cells to make roots.</p></div>
+    <div class="lc-step"><span class="lc-ic">🌿</span><h4>High cytokinin</h4><p>The media tells cells to make shoots.</p></div>
+    <div class="lc-step"><span class="lc-ic">⚖️</span><h4>Balanced hormones</h4><p>Equal amounts often make callus.</p></div>
+    <div class="lc-step"><span class="lc-ic">🌳</span><h4>New plant grows</h4><p>Hormones are adjusted until a full plant forms.</p></div>
+  </div>
+
   <div class="mr rv">
     <div class="mi">
       <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&q=85" alt="Small bottles of plant growth regulator solutions including auxins and cytokinins on a laboratory bench">
       <div class="ic">📸 Plant growth regulator solutions used in TC media</div>
     </div>
     <div class="mv">
-      <iframe src="https://www.youtube.com/embed/e5JUtrUv_Vs" allowfullscreen loading="lazy" title="Auxins cytokinins and other plant growth regulators in tissue culture"></iframe>
+      <iframe src="https://www.youtube.com/embed/wgU7-nqo1ks" allowfullscreen loading="lazy" title="Auxins cytokinins and other plant growth regulators in tissue culture"></iframe>
       <div class="vl">🎬 Hormones in Plant Tissue Culture</div>
     </div>
   </div>
@@ -522,7 +639,6 @@ footer strong{color:var(--g4);}
   </div>
 </section>
 
-<!-- ══ 08 LABORATORY ══ -->
 <section class="ts" id="lab">
   <div class="th">
     <div class="tn">08</div>
@@ -530,13 +646,20 @@ footer strong{color:var(--g4);}
   </div>
   <p class="tintro">A tissue culture lab is a very special facility — not a regular lab! It has dedicated, specially designed rooms to keep everything absolutely clean and controlled. Let's take a tour!</p>
 
+  <div class="lc rv">
+    <div class="lc-step"><span class="lc-ic">🚿</span><h4>Wash room</h4><p>Glassware and tools are cleaned first.</p></div>
+    <div class="lc-step"><span class="lc-ic">🔥</span><h4>Sterilize room</h4><p>Media and glassware are made germ-free.</p></div>
+    <div class="lc-step"><span class="lc-ic">💨</span><h4>Clean hood</h4><p>The explant is placed in a sterile airflow space.</p></div>
+    <div class="lc-step"><span class="lc-ic">🌡️</span><h4>Grow room</h4><p>Plant bottles stay under light and temperature control.</p></div>
+  </div>
+
   <div class="mr rv">
     <div class="mi">
       <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&q=85" alt="Modern plant tissue culture laboratory showing laminar flow hoods, culture racks with bottled plants, and sterile equipment">
       <div class="ic">📸 A modern plant tissue culture laboratory</div>
     </div>
     <div class="mv">
-      <iframe src="https://www.youtube.com/embed/CKE5GS-AjxE" allowfullscreen loading="lazy" title="Complete tour of a plant tissue culture laboratory showing all rooms and equipment"></iframe>
+      <iframe src="https://www.youtube.com/embed/qkJ64v4KWnw" allowfullscreen loading="lazy" title="Complete tour of a plant tissue culture laboratory showing all rooms and equipment"></iframe>
       <div class="vl">🎬 Lab Tour — All Rooms &amp; Equipment</div>
     </div>
   </div>
@@ -557,7 +680,6 @@ footer strong{color:var(--g4);}
   </div>
 </section>
 
-<!-- ══ 09 STERILIZATION ══ -->
 <section class="ts" id="sterilization">
   <div class="th">
     <div class="tn">09</div>
@@ -565,13 +687,20 @@ footer strong{color:var(--g4);}
   </div>
   <p class="tintro">Contamination is the biggest enemy of tissue culture. Even a single bacterial spore landing on your media can destroy an entire experiment. That's why <em>everything</em> must be sterilized — completely!</p>
 
+  <div class="lc rv">
+    <div class="lc-step"><span class="lc-ic">🧴</span><h4>Clean the surface</h4><p>The explant is washed with chemicals and sterile water.</p></div>
+    <div class="lc-step"><span class="lc-ic">🔥</span><h4>Sterilize tools</h4><p>Forceps and scalpels are flamed or disinfected.</p></div>
+    <div class="lc-step"><span class="lc-ic">💨</span><h4>Work in hood</h4><p>The culture is handled in sterile air.</p></div>
+    <div class="lc-step"><span class="lc-ic">✅</span><h4>Contamination free</h4><p>The bottle stays clean so the plant can grow safely.</p></div>
+  </div>
+
   <div class="mr rv">
     <div class="mi">
       <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=85" alt="Autoclave machine with pressure gauges used for sterilizing tissue culture media and equipment">
       <div class="ic">📸 Autoclave — the most critical sterilization equipment</div>
     </div>
     <div class="mv">
-      <iframe src="https://www.youtube.com/embed/pjPPFLvJCbo" allowfullscreen loading="lazy" title="Methods of sterilization in plant tissue culture including autoclave and surface sterilization"></iframe>
+      <iframe src="https://www.youtube.com/embed/YjPAo9cjtTE" allowfullscreen loading="lazy" title="Methods of sterilization in plant tissue culture including autoclave and surface sterilization"></iframe>
       <div class="vl">🎬 Sterilization Methods in Tissue Culture</div>
     </div>
   </div>
@@ -589,7 +718,6 @@ footer strong{color:var(--g4);}
   </div>
 </section>
 
-<!-- ══ 10 MICROPROPAGATION ══ -->
 <section class="ts" id="process">
   <div class="th">
     <div class="tn">10</div>
@@ -597,13 +725,20 @@ footer strong{color:var(--g4);}
   </div>
   <p class="tintro">Micropropagation has 6 clear stages — each one with a specific purpose. Follow this like a recipe: miss a step and the batch fails. Do it right and you can multiply one plant into thousands!</p>
 
+  <div class="lc rv">
+    <div class="lc-step"><span class="lc-ic">0️⃣</span><h4>Choose parent plant</h4><p>Start with the healthiest plant available.</p></div>
+    <div class="lc-step"><span class="lc-ic">1️⃣</span><h4>Establish culture</h4><p>Put the clean explant into sterile media.</p></div>
+    <div class="lc-step"><span class="lc-ic">2️⃣</span><h4>Multiply shoots</h4><p>Many small shoots grow from one starting piece.</p></div>
+    <div class="lc-step"><span class="lc-ic">3️⃣</span><h4>Root and harden</h4><p>Roots form first, then plants move to soil.</p></div>
+  </div>
+
   <div class="mr rv">
     <div class="mi">
       <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=800&q=85" alt="Sequence showing stages of micropropagation from a tiny explant through callus multiplication to rooted plantlets ready for hardening">
       <div class="ic">📸 The full journey — from tiny explant to healthy plant</div>
     </div>
     <div class="mv">
-      <iframe src="https://www.youtube.com/embed/h1kLBVOCNOU" allowfullscreen loading="lazy" title="Stages of micropropagation from stage 0 to stage 5 explained with examples"></iframe>
+      <iframe src="https://www.youtube.com/embed/XS0djGhCBnc" allowfullscreen loading="lazy" title="Stages of micropropagation from stage 0 to stage 5 explained with examples"></iframe>
       <div class="vl">🎬 All Stages of Micropropagation</div>
     </div>
   </div>
@@ -620,7 +755,6 @@ footer strong{color:var(--g4);}
   <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1200&q=80" class="bimg rv" alt="Healthy green plants growing in rows showing the final result of successful micropropagation and hardening">
 </section>
 
-<!-- ══ 11 HARDENING ══ -->
 <section class="ts" id="hardening">
   <div class="th">
     <div class="tn">11</div>
@@ -628,13 +762,20 @@ footer strong{color:var(--g4);}
   </div>
   <p class="tintro">TC plants are like children who grew up in a perfectly protected environment. Moving them suddenly to the harsh outdoors would be a fatal shock. Hardening is the gentle process of helping them adapt — step by step.</p>
 
+  <div class="lc rv">
+    <div class="lc-step"><span class="lc-ic">🏠</span><h4>Start in greenhouse</h4><p>Young plants stay in a warm, humid, safe place.</p></div>
+    <div class="lc-step"><span class="lc-ic">🌤️</span><h4>Get more air</h4><p>Humidity slowly drops and light becomes stronger.</p></div>
+    <div class="lc-step"><span class="lc-ic">☀️</span><h4>Move outside</h4><p>The plants adjust to sun, wind, and normal soil.</p></div>
+    <div class="lc-step"><span class="lc-ic">🌾</span><h4>Ready for field</h4><p>Hardened plants can survive and grow well outdoors.</p></div>
+  </div>
+
   <div class="mr rv">
     <div class="mi">
       <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=85" alt="Greenhouse facility with hundreds of small TC plantlets in trays being hardened under controlled conditions">
       <div class="ic">📸 Primary hardening greenhouse at UBKV</div>
     </div>
     <div class="mv">
-      <iframe src="https://www.youtube.com/embed/xBVVfRpBoUs" allowfullscreen loading="lazy" title="Hardening of tissue cultured plants explained with greenhouse and shade net house steps"></iframe>
+      <iframe src="https://www.youtube.com/embed/HRUgAkIy6Qw" allowfullscreen loading="lazy" title="Hardening of tissue cultured plants explained with greenhouse and shade net house steps"></iframe>
       <div class="vl">🎬 Hardening of TC Plants Explained</div>
     </div>
   </div>
@@ -660,7 +801,6 @@ footer strong{color:var(--g4);}
   </div>
 </section>
 
-<!-- ══ 12 APPLICATIONS ══ -->
 <section class="ts" id="applications">
   <div class="th">
     <div class="tn">12</div>
@@ -668,13 +808,20 @@ footer strong{color:var(--g4);}
   </div>
   <p class="tintro">Plant tissue culture is not just laboratory science — it has transformed farming, conservation, medicine, and food production around the world. Here's how it's being used <em>right now</em>.</p>
 
+  <div class="lc rv">
+    <div class="lc-step"><span class="lc-ic">🍌</span><h4>Make many copies</h4><p>One plant becomes thousands of healthy clones.</p></div>
+    <div class="lc-step"><span class="lc-ic">🦠</span><h4>Remove disease</h4><p>Meristem culture helps make virus-free plants.</p></div>
+    <div class="lc-step"><span class="lc-ic">🌍</span><h4>Save rare plants</h4><p>Endangered species can be multiplied and protected.</p></div>
+    <div class="lc-step"><span class="lc-ic">💊</span><h4>Support industry</h4><p>TC helps medicine, breeding, and food production.</p></div>
+  </div>
+
   <div class="mr rv">
     <div class="mi">
       <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=85" alt="Large commercial TC plant nursery with thousands of identical healthy plants growing in organized rows">
       <div class="ic">📸 Commercial TC nursery — thousands of identical, healthy plants</div>
     </div>
     <div class="mv">
-      <iframe src="https://www.youtube.com/embed/LKqGiDHFTtc" allowfullscreen loading="lazy" title="Applications of plant tissue culture in agriculture and industry worldwide"></iframe>
+      <iframe src="https://www.youtube.com/embed/IiBQsfXC-iI" allowfullscreen loading="lazy" title="Applications of plant tissue culture in agriculture and industry worldwide"></iframe>
       <div class="vl">🎬 Real Applications of Plant Tissue Culture</div>
     </div>
   </div>
@@ -689,7 +836,6 @@ footer strong{color:var(--g4);}
   </div>
 </section>
 
-<!-- ══ 13 BANANA TC ══ -->
 <section class="ts" id="banana">
   <div class="th">
     <div class="tn">13</div>
@@ -697,13 +843,20 @@ footer strong{color:var(--g4);}
   </div>
   <p class="tintro">Banana tissue culture is one of the most successful commercial TC applications in India. The UBKV Biochemistry Department developed an effective protocol for the Coochbehar region of West Bengal.</p>
 
+  <div class="lc rv">
+    <div class="lc-step"><span class="lc-ic">🍌</span><h4>Select banana sucker</h4><p>Choose a healthy mother plant and take a sucker.</p></div>
+    <div class="lc-step"><span class="lc-ic">🧼</span><h4>Disinfect carefully</h4><p>The explant is cleaned to remove fungi and bacteria.</p></div>
+    <div class="lc-step"><span class="lc-ic">🌿</span><h4>Multiply shoots</h4><p>Special media helps many shoots grow fast.</p></div>
+    <div class="lc-step"><span class="lc-ic">🌳</span><h4>Plant in field</h4><p>Hardened banana plants are moved to farms.</p></div>
+  </div>
+
   <div class="mr rv">
     <div class="mi">
       <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=800&q=85" alt="Bumper banana harvest in Coochbehar district showing large bunches of bananas from TC plants">
       <div class="ic">📸 Bumper banana harvest from TC plants — Coochbehar district</div>
     </div>
     <div class="mv">
-      <iframe src="https://www.youtube.com/embed/zR3W8gOGSzk" allowfullscreen loading="lazy" title="Complete banana tissue culture process from explant to field planting with bumper harvest"></iframe>
+      <iframe src="https://www.youtube.com/embed/Y9Ot_2YK8-A" allowfullscreen loading="lazy" title="Complete banana tissue culture process from explant to field planting with bumper harvest"></iframe>
       <div class="vl">🎬 Complete Banana TC Process</div>
     </div>
   </div>
@@ -740,7 +893,6 @@ footer strong{color:var(--g4);}
   </div>
 </section>
 
-<!-- ══ 14 POTATO TC ══ -->
 <section class="ts" id="potato">
   <div class="th">
     <div class="tn">14</div>
@@ -748,13 +900,20 @@ footer strong{color:var(--g4);}
   </div>
   <p class="tintro">Potato is one of the world's most important food crops. Viral diseases drastically reduce potato yield. TC is the <em>only</em> reliable way to produce certified, virus-free seed potatoes at scale.</p>
 
+  <div class="lc rv">
+    <div class="lc-step"><span class="lc-ic">🧫</span><h4>Make clean plantlets</h4><p>Meristem culture removes disease from the potato line.</p></div>
+    <div class="lc-step"><span class="lc-ic">🌱</span><h4>Grow minitubers</h4><p>Small tubers are formed in protected systems.</p></div>
+    <div class="lc-step"><span class="lc-ic">🏠</span><h4>Multiply safely</h4><p>Protected generations keep the seed healthy.</p></div>
+    <div class="lc-step"><span class="lc-ic">🥔</span><h4>Farmers plant them</h4><p>Certified seed potatoes reach the field.</p></div>
+  </div>
+
   <div class="mr rv">
     <div class="mi">
       <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=800&q=85" alt="Potato minitubers produced through tissue culture aeroponics system ready for planting">
       <div class="ic">📸 TC potato plantlets and minitubers — start of certified seed production</div>
     </div>
     <div class="mv">
-      <iframe src="https://www.youtube.com/embed/Lf-TW6FN0Cc" allowfullscreen loading="lazy" title="Potato tissue culture and certified seed potato production system G0 to G4"></iframe>
+      <iframe src="https://www.youtube.com/embed/iTuII3HzZ2g" allowfullscreen loading="lazy" title="Potato tissue culture and certified seed potato production system G0 to G4"></iframe>
       <div class="vl">🎬 Potato TC &amp; Certified Seed Production</div>
     </div>
   </div>
@@ -774,7 +933,6 @@ footer strong{color:var(--g4);}
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div style="font-size:2.8rem;margin-bottom:1rem">🌿</div>
   <p style="font-size:1.15rem"><strong>Plant Tissue Culture — Complete Easy Learning Guide</strong></p>
@@ -800,19 +958,6 @@ window.addEventListener('scroll',()=>{prog.style.transform=`scaleX(${window.scro
 // ACTIVE NAV
 const secs=document.querySelectorAll('section[id]');
 const links=document.querySelectorAll('.ni');
-new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      links.forEach(l=>l.classList.remove('active'));
-      const a=document.querySelector(`.ni[href="#${e.target.id}"]`);
-      if(a)a.classList.add('active');
-    }
-  });
-},{threshold:0.25,rootMargin:'-50px 0px -55% 0px'}).observe.call(new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));const a=document.querySelector(`.ni[href="#${e.target.id}"]`);if(a)a.classList.add('active');}});
-},{threshold:0.25,rootMargin:'-50px 0px -55% 0px'}),secs[0]);
-
-// simpler active nav
 const io2=new IntersectionObserver((entries)=>{
   entries.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));const a=document.querySelector(`.ni[href="#${e.target.id}"]`);if(a)a.classList.add('active');}});
 },{threshold:0.3});
@@ -820,8 +965,6 @@ secs.forEach(s=>io2.observe(s));
 
 // SCROLL REVEAL
 const rvs=document.querySelectorAll('.rv');
-new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');}});},{threshold:0.07}).observe.call(
-  new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');}});},{threshold:0.07}),rvs[0]);
 const rvObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');rvObs.unobserve(e.target);}});},{threshold:0.07});
 rvs.forEach(r=>rvObs.observe(r));
 
