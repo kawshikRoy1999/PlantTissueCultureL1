@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plant Tissue Culture – Easy Learning Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --g1:#1b4332;--g2:#2d6a4f;--g3:#40916c;--g4:#52b788;--g5:#95d5b2;--g6:#d8f3dc;
+  --cream:#f8f9f0;--white:#fff;--text:#1a2e1e;--muted:#3d5a45;
+  --gold:#e9c46a;--orange:#f4a261;--red:#e76f51;
+  --font-body:'Nunito',sans-serif;--font-head:'Merriweather',serif;
+  --r:20px;--shadow:0 6px 32px rgba(27,67,50,.13);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:18px;}
+body{font-family:var(--font-body);background:var(--cream);color:var(--text);line-height:1.8;overflow-x:hidden;}
+
+.skip-link{position:absolute;top:-60px;left:1rem;background:var(--g1);color:#fff;padding:.6rem 1.2rem;border-radius:8px;z-index:9999;transition:top .2s;font-size:1rem;}
+.skip-link:focus{top:1rem;}
+
+/* SIDEBAR */
+#sidebar{position:fixed;top:0;left:0;height:100vh;width:272px;background:var(--g1);display:flex;flex-direction:column;z-index:800;overflow-y:auto;transition:transform .35s cubic-bezier(.4,0,.2,1);box-shadow:4px 0 24px rgba(0,0,0,.25);}
+#sidebar::-webkit-scrollbar{width:4px;}
+#sidebar::-webkit-scrollbar-thumb{background:var(--g4);border-radius:4px;}
+.sb-header{padding:1.6rem 1.4rem 1rem;border-bottom:1px solid rgba(255,255,255,.1);}
+.sb-title{font-family:var(--font-head);font-size:1.05rem;color:var(--g5);line-height:1.3;margin-bottom:.25rem;}
+.sb-sub{font-size:.78rem;color:rgba(149,213,178,.6);}
+.sb-nav{padding:.8rem 0 2rem;}
+.ni{display:flex;align-items:center;gap:.85rem;padding:.72rem 1.4rem;color:rgba(216,243,220,.8);text-decoration:none;font-size:.88rem;font-weight:700;border-left:3px solid transparent;transition:all .2s;}
+.ni:hover,.ni.active{color:#fff;background:rgba(82,183,136,.18);border-left-color:var(--g4);}
+.ni .ic{font-size:1.1rem;min-width:1.5rem;text-align:center;}
+.ni .num{min-width:20px;height:20px;border-radius:50%;background:var(--g3);color:#fff;font-size:.65rem;font-weight:900;display:flex;align-items:center;justify-content:center;margin-left:auto;}
+
+/* HAMBURGER */
+#mBtn{display:none;position:fixed;top:1rem;left:1rem;z-index:900;width:48px;height:48px;border-radius:12px;background:var(--g1);border:none;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;box-shadow:var(--shadow);}
+#mBtn span{display:block;width:22px;height:2.5px;background:#fff;border-radius:2px;transition:all .3s;}
+
+/* MAIN */
+#main{margin-left:272px;min-height:100vh;}
+
+/* PROGRESS */
+#prog{position:fixed;top:0;left:272px;right:0;height:4px;background:var(--g4);transform-origin:left;transform:scaleX(0);z-index:1000;}
+
+/* A11Y BAR */
+.a11y{background:var(--g1);padding:.55rem 1.8rem;display:flex;align-items:center;gap:.8rem;justify-content:flex-end;position:sticky;top:0;z-index:700;border-bottom:2px solid var(--g2);}
+.a11y-lbl{color:var(--g5);font-size:.82rem;font-weight:700;}
+.fb{background:rgba(82,183,136,.2);border:2px solid var(--g4);color:var(--g4);width:38px;height:38px;border-radius:10px;font-size:.9rem;font-weight:900;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;font-family:var(--font-body);}
+.fb:hover{background:var(--g4);color:var(--g1);}
+
+/* HERO */
+.hero{min-height:100vh;background:linear-gradient(155deg,var(--g1) 0%,#0d2818 45%,var(--g2) 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:4rem 2.5rem;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=1600&q=70') center/cover;opacity:.09;}
+.hero-leaf{position:absolute;font-size:16rem;opacity:.04;animation:fl 9s ease-in-out infinite;user-select:none;}
+.hero-leaf:nth-child(1){top:-3rem;right:-3rem;}
+.hero-leaf:nth-child(2){bottom:-5rem;left:-3rem;animation-delay:-4.5s;font-size:12rem;}
+@keyframes fl{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-18px) rotate(7deg)}}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(82,183,136,.2);border:2px solid var(--g4);color:var(--g5);font-size:.88rem;font-weight:700;letter-spacing:.5px;padding:.5rem 1.4rem;border-radius:100px;margin-bottom:1.8rem;animation:fu .8s ease both;}
+.hero h1{font-family:var(--font-head);font-size:clamp(2.3rem,5vw,4rem);color:#fff;line-height:1.15;animation:fu .9s .1s ease both;max-width:760px;}
+.hero h1 em{color:var(--g4);font-style:normal;}
+.hero-desc{color:var(--g5);font-size:1.15rem;margin-top:1.4rem;max-width:550px;line-height:1.95;animation:fu 1s .2s ease both;font-weight:400;}
+.hero-credits{margin-top:1rem;color:rgba(149,213,178,.65);font-size:.88rem;animation:fu 1s .3s ease both;}
+.hero-cta{margin-top:2.4rem;animation:fu 1s .4s ease both;display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
+.btn{display:inline-flex;align-items:center;gap:.55rem;padding:.9rem 2rem;border-radius:100px;font-size:1rem;font-weight:800;text-decoration:none;transition:all .25s;border:none;cursor:pointer;font-family:var(--font-body);}
+.btn-p{background:var(--g4);color:var(--g1);}
+.btn-p:hover{background:var(--g5);transform:translateY(-2px);box-shadow:0 8px 24px rgba(82,183,136,.4);}
+.btn-o{background:transparent;border:2px solid rgba(149,213,178,.5);color:var(--g5);}
+.btn-o:hover{background:rgba(82,183,136,.15);border-color:var(--g4);}
+@keyframes fu{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTIONS */
+.ts{padding:4.5rem 2.8rem;border-bottom:2px solid rgba(27,67,50,.07);}
+.ts:nth-child(even){background:#fff;}
+.th{display:flex;align-items:flex-start;gap:1.2rem;margin-bottom:2.2rem;}
+.tn{min-width:54px;height:54px;border-radius:15px;background:var(--g1);color:var(--g5);font-family:var(--font-head);font-size:1.2rem;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 16px rgba(27,67,50,.25);}
+.tlbl{font-size:.75rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--g3);margin-bottom:.25rem;}
+.ttl{font-family:var(--font-head);font-size:clamp(1.65rem,3.5vw,2.3rem);color:var(--g1);line-height:1.2;}
+.tintro{font-size:1.12rem;color:var(--muted);line-height:1.95;max-width:780px;margin-bottom:2.4rem;font-weight:400;}
+
+/* MEDIA ROW */
+.mr{display:grid;grid-template-columns:1fr 1fr;gap:1.8rem;margin-bottom:2.6rem;align-items:start;}
+.mr.full{grid-template-columns:1fr;}
+.mi{border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);}
+.mi img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;transition:transform .4s;}
+.mi:hover img{transform:scale(1.04);}
+.ic{background:var(--g1);color:var(--g5);padding:.6rem 1rem;font-size:.82rem;font-weight:700;display:flex;align-items:center;gap:.45rem;}
+.mv{border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);}
+.mv iframe{width:100%;aspect-ratio:16/9;display:block;border:none;}
+.vl{background:var(--g2);color:#fff;padding:.6rem 1rem;font-size:.82rem;font-weight:700;display:flex;align-items:center;gap:.45rem;}
+
+/* CARDS */
+.cr{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:1.4rem;margin:1.8rem 0;}
+.card{background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);border:2px solid var(--g6);transition:transform .25s,box-shadow .25s;}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(27,67,50,.15);}
+.ci{width:100%;height:175px;object-fit:cover;display:block;}
+.cb{padding:1.35rem;}
+.cci{font-size:1.9rem;margin-bottom:.55rem;display:block;}
+.ctag{display:inline-block;background:var(--g6);color:var(--g2);font-size:.7rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:.3rem .8rem;border-radius:100px;margin-bottom:.65rem;}
+.card h3{font-family:var(--font-head);font-size:1.1rem;color:var(--g1);margin-bottom:.45rem;line-height:1.3;}
+.card p{font-size:1rem;color:var(--muted);line-height:1.85;}
+
+/* INFO BOX */
+.ib{background:linear-gradient(135deg,var(--g1),var(--g2));border-radius:var(--r);padding:2.2rem 2.4rem;color:#fff;margin:1.8rem 0;border-left:5px solid var(--g4);}
+.ib h3{font-family:var(--font-head);font-size:1.35rem;color:var(--g5);margin-bottom:.85rem;}
+.ib p,.ib li{font-size:1.05rem;line-height:1.95;opacity:.93;}
+.ib ul{padding-left:1.4rem;margin-top:.5rem;}
+.ib li{margin-bottom:.35rem;}
+
+/* HIGHLIGHT GRID */
+.hg{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:1.2rem;margin:1.8rem 0;}
+.hb{background:#fff;border-radius:16px;padding:1.5rem;border:2px solid var(--g6);border-top:4px solid var(--g4);box-shadow:0 3px 16px rgba(27,67,50,.08);}
+.hb .hi{font-size:2.1rem;margin-bottom:.7rem;display:block;}
+.hb h4{font-size:1rem;font-weight:800;color:var(--g1);margin-bottom:.35rem;}
+.hb p{font-size:1rem;color:var(--muted);line-height:1.85;}
+
+/* STEP LIST */
+.sl{list-style:none;margin:1.4rem 0;}
+.sl li{display:flex;gap:1.25rem;align-items:flex-start;padding:1.35rem 0;border-bottom:2px dashed var(--g6);}
+.sl li:last-child{border-bottom:none;}
+.sn{min-width:46px;height:46px;border-radius:13px;background:var(--g4);color:var(--g1);font-weight:900;font-size:.95rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 12px rgba(82,183,136,.35);}
+.sc strong{display:block;font-size:1.08rem;color:var(--g1);margin-bottom:.28rem;font-weight:800;}
+.sc span{font-size:1rem;color:var(--muted);line-height:1.88;}
+
+/* TABLE */
+.tw{overflow-x:auto;margin:1.8rem 0;border-radius:var(--r);box-shadow:var(--shadow);}
+table{width:100%;border-collapse:collapse;font-size:1rem;}
+thead{background:var(--g1);color:#fff;}
+th{padding:1rem 1.3rem;text-align:left;font-weight:800;font-size:.92rem;}
+td{padding:.95rem 1.3rem;color:var(--muted);border-bottom:2px solid var(--g6);}
+tbody tr:nth-child(even){background:#f0faf4;}
+tbody tr:hover{background:var(--g6);}
+
+/* GALLERY */
+.gl{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.8rem 0;}
+.gl img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px;box-shadow:var(--shadow);transition:transform .3s;display:block;}
+.gl img:hover{transform:scale(1.05);}
+
+/* QUOTE */
+.pq{border-left:5px solid var(--g4);padding:1.35rem 2rem;margin:1.8rem 0;background:linear-gradient(90deg,var(--g6),transparent);border-radius:0 16px 16px 0;}
+.pq p{font-family:var(--font-head);font-size:1.2rem;color:var(--g1);font-style:italic;line-height:1.6;}
+.pq cite{display:block;margin-top:.55rem;font-size:.85rem;color:var(--muted);font-style:normal;font-weight:700;}
+
+/* BANNER */
+.bimg{width:100%;height:300px;object-fit:cover;border-radius:var(--r);display:block;box-shadow:var(--shadow);margin:1.8rem 0;}
+
+/* FOOTER */
+footer{background:var(--g1);color:var(--g5);text-align:center;padding:3.5rem 2rem;font-size:1rem;line-height:2;}
+footer strong{color:var(--g4);}
+
+/* OVERLAY */
+#ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:799;}
+#ov.show{display:block;}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
+.rv.vis{opacity:1;transform:none;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  #sidebar{transform:translateX(-100%);}
+  #sidebar.open{transform:translateX(0);}
+  #main{margin-left:0;}
+  #mBtn{display:flex;}
+  #prog{left:0;}
+  .mr{grid-template-columns:1fr;}
+  .gl{grid-template-columns:1fr 1fr;}
+  .ts{padding:3rem 1.4rem;}
+}
+@media(max-width:560px){
+  .gl{grid-template-columns:1fr;}
+  .cr{grid-template-columns:1fr;}
+  .hg{grid-template-columns:1fr;}
+  .hero{padding:3rem 1.2rem;}
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+<div id="prog"></div>
+
+<!-- SIDEBAR -->
+<nav id="sidebar" aria-label="Topics navigation">
+  <div class="sb-header">
+    <div class="sb-title">🌿 Plant Tissue Culture</div>
+    <div class="sb-sub">Easy Learning Guide — UBKV</div>
+  </div>
+  <div class="sb-nav">
+    <a href="#intro"         class="ni"><span class="ic">📖</span>Introduction<span class="num">1</span></a>
+    <a href="#history"       class="ni"><span class="ic">📜</span>History<span class="num">2</span></a>
+    <a href="#totipotency"   class="ni"><span class="ic">🔬</span>Totipotency<span class="num">3</span></a>
+    <a href="#explants"      class="ni"><span class="ic">🌱</span>Explants<span class="num">4</span></a>
+    <a href="#types"         class="ni"><span class="ic">🧫</span>Types of TC<span class="num">5</span></a>
+    <a href="#media"         class="ni"><span class="ic">🧪</span>Culture Media<span class="num">6</span></a>
+    <a href="#hormones"      class="ni"><span class="ic">💊</span>Hormones<span class="num">7</span></a>
+    <a href="#lab"           class="ni"><span class="ic">🏛️</span>The Laboratory<span class="num">8</span></a>
+    <a href="#sterilization" class="ni"><span class="ic">🧼</span>Sterilization<span class="num">9</span></a>
+    <a href="#process"       class="ni"><span class="ic">🔄</span>Micropropagation<span class="num">10</span></a>
+    <a href="#hardening"     class="ni"><span class="ic">🌳</span>Hardening<span class="num">11</span></a>
+    <a href="#applications"  class="ni"><span class="ic">🌾</span>Applications<span class="num">12</span></a>
+    <a href="#banana"        class="ni"><span class="ic">🍌</span>Banana TC<span class="num">13</span></a>
+    <a href="#potato"        class="ni"><span class="ic">🥔</span>Potato TC<span class="num">14</span></a>
+  </div>
+</nav>
+<div id="ov"></div>
+<button id="mBtn" aria-label="Open navigation menu"><span></span><span></span><span></span></button>
+
+<!-- MAIN -->
+<main id="main">
+
+<!-- ACCESSIBILITY BAR -->
+<div class="a11y" role="toolbar" aria-label="Text size controls">
+  <span class="a11y-lbl">👁️ Text Size:</span>
+  <button class="fb" id="fd" aria-label="Smaller text">A−</button>
+  <button class="fb" id="fr" aria-label="Reset text">A</button>
+  <button class="fb" id="fu" aria-label="Larger text">A+</button>
+</div>
+
+<!-- HERO -->
+<section class="hero" aria-labelledby="hero-h">
+  <div class="hero-leaf" aria-hidden="true">🍃</div>
+  <div class="hero-leaf" aria-hidden="true">🌿</div>
+  <div class="hero-badge">🎓 Complete Educational Guide</div>
+  <h1 id="hero-h">Plant <em>Tissue Culture</em><br>Made Easy</h1>
+  <p class="hero-desc">Learn how scientists grow thousands of plants from a single tiny cell — each topic has its own picture and video so you never get lost!</p>
+  <p class="hero-credits">By Dr. Nandita Sahana · Dept. of Biochemistry, UBKV</p>
+  <div class="hero-cta">
+    <a href="#intro" class="btn btn-p">🌱 Start Learning</a>
+    <a href="#applications" class="btn btn-o">🌾 See Real Uses</a>
+  </div>
+</section>
+
+<!-- ══ 01 INTRODUCTION ══ -->
+<section class="ts" id="intro">
+  <div class="th">
+    <div class="tn">01</div>
+    <div><div class="tlbl">Topic 1 · Foundation</div><h2 class="ttl">What is Plant Tissue Culture?</h2></div>
+  </div>
+  <p class="tintro">Imagine cutting a tiny piece from a plant and growing it into thousands of full plants inside a laboratory. No soil. No insects. No diseases. That is exactly what Plant Tissue Culture does — and it is changing agriculture across the world!</p>
+
+  <div class="mr rv">
+    <div class="mi">
+      <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=800&q=85" alt="Scientist working in a plant tissue culture lab with green plantlets growing in sterile glass bottles on metal racks">
+      <div class="ic">📸 Plant tissue culture lab — plantlets in sterile bottles</div>
+    </div>
+    <div class="mv">
+      <iframe src="https://www.youtube.com/embed/oPMpMRSHbzA" allowfullscreen loading="lazy" title="Introduction to Plant Tissue Culture — what it is and how it works"></iframe>
+      <div class="vl">🎬 Introduction to Plant Tissue Culture</div>
+    </div>
+  </div>
+
+  <div class="hg rv">
+    <div class="hb"><span class="hi">🌿</span><h4>What is a Clone?</h4><p>A plant grown from a single parent through asexual (non-seed) reproduction. All clones are <strong>genetically identical</strong> — perfect copies of the parent plant!</p></div>
+    <div class="hb"><span class="hi">🔁</span><h4>Clonal Propagation</h4><p>Making many identical copies of a plant through asexual methods. Same genes, same quality, same yield — guaranteed every single time.</p></div>
+    <div class="hb"><span class="hi">🧫</span><h4>Micropropagation</h4><p>Rapid mass multiplication of plants in a lab. Done on special nutrient media, in sterile containers, under controlled light and temperature.</p></div>
+    <div class="hb"><span class="hi">🧬</span><h4>In Vitro</h4><p>Latin for "in glass." Any biological process done in a lab container — not inside a living plant. The opposite is <em>in vivo</em> (inside a living organism).</p></div>
+  </div>
+
+  <div class="ib rv">
+    <h3>🎯 The Simple Idea — Anyone Can Understand!</h3>
+    <p>Think of it like this: take a tiny piece of a healthy plant (even a leaf tip!), put it in a special nutrient "soup" inside a clean bottle, and keep it in a controlled room. The cells will multiply and eventually form a whole new plant!</p>
+    <ul>
+      <li>No soil needed at the start</li>
+      <li>No insect or weather damage</li>
+      <li>Make thousands of plants from just ONE parent</li>
+      <li>All plants are disease-free and high-quality</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══ 02 HISTORY ══ -->
+<section class="ts" id="history">
+  <div class="th">
+    <div class="tn">02</div>
+    <div><div class="tlbl">Topic 2 · Pioneers</div><h2 class="ttl">History of Plant Tissue Culture</h2></div>
+  </div>
+  <p class="tintro">Three brilliant scientists — working over 100 years ago — laid the entire foundation of plant tissue culture. Let's meet them and understand what each one discovered.</p>
+
+  <div class="mr rv">
+    <div class="mi">
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=85" alt="Historical photograph style portrait representing early scientists who discovered plant tissue culture techniques">
+      <div class="ic">📸 The pioneers of plant tissue culture</div>
+    </div>
+    <div class="mv">
+      <iframe src="https://www.youtube.com/embed/1kLIY4m4vEE" allowfullscreen loading="lazy" title="History and pioneers of plant tissue culture explained"></iframe>
+      <div class="vl">🎬 History of Plant Tissue Culture</div>
+    </div>
+  </div>
+
+  <div class="cr rv">
+    <div class="card">
+      <img class="ci" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Ross_Granville_Harrison.jpg/440px-Ross_Granville_Harrison.jpg" alt="Portrait of Ross Granville Harrison, American biologist and pioneer of tissue culture" onerror="this.src='https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=400&q=80'">
+      <div class="cb"><span class="ctag">First Pioneer</span><h3>Ross G. Harrison (1870–1959)</h3><p>American biologist — first to successfully grow <strong>animal tissue in artificial media</strong> outside the body. He proved that cells can survive and multiply without being inside an organism. His work inspired plant scientists to try the same with plant cells!</p></div>
+    </div>
+    <div class="card">
+      <img class="ci" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Gottlieb_Haberlandt.jpg/440px-Gottlieb_Haberlandt.jpg" alt="Portrait of Gottlieb Haberlandt, Austrian botanist and father of plant tissue culture" onerror="this.src='https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80'">
+      <div class="cb"><span class="ctag">👨‍🔬 Father of PTC</span><h3>Gottlieb Haberlandt (1854–1945)</h3><p>Austrian botanist who proposed the idea that <strong>every plant cell can grow into a full plant</strong> — he called this <em>totipotency</em>. He also proposed dedifferentiation. Though he never succeeded experimentally, his idea was revolutionary. Known as the <strong>Father of Plant Tissue Culture</strong>.</p></div>
+    </div>
+    <div class="card">
+      <img class="ci" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Frederick_Campion_Steward.jpg/440px-Frederick_Campion_Steward.jpg" alt="Portrait of Frederick Campion Steward who grew a full plant from a single carrot cell" onerror="this.src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80'">
+      <div class="cb"><span class="ctag">🏆 Champion of PTC</span><h3>Frederick C. Steward</h3><p>First to grow a <strong>complete carrot plant from a single carrot cell</strong>! This landmark experiment proved Haberlandt's totipotency theory was correct. He is celebrated as the <strong>Champion of Plant Tissue Culture</strong>.</p></div>
+    </div>
+  </div>
+
+  <div class="pq rv">
+    <p>"Every plant cell has the complete blueprint of the entire plant — it just needs the right conditions to express it."</p>
+    <cite>— Concept of Totipotency, proposed by Gottlieb Haberlandt, 1902</cite>
+  </div>
+</section>
+
+<!-- ══ 03 TOTIPOTENCY ══ -->
+<section class="ts" id="totipotency">
+  <div class="th">
+    <div class="tn">03</div>
+    <div><div class="tlbl">Topic 3 · Core Concept</div><h2 class="ttl">Totipotency & Dedifferentiation</h2></div>
+  </div>
+  <p class="tintro">These two words sound complicated but the ideas are very simple! They explain WHY plant tissue culture is even possible — why a single cell can become an entire plant.</p>
+
+  <div class="mr rv">
+    <div class="mi">
+      <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=85" alt="Microscope view of dividing plant cells showing the process of totipotency and dedifferentiation">
+      <div class="ic">📸 Plant cells under a microscope — each one carries the full plant blueprint</div>
+    </div>
+    <div class="mv">
+      <iframe src="https://www.youtube.com/embed/8Q-VeCLjhAQ" allowfullscreen loading="lazy" title="Totipotency and dedifferentiation explained with simple examples"></iframe>
+      <div class="vl">🎬 Totipotency Explained Simply</div>
+    </div>
+  </div>
+
+  <div class="hg rv">
+    <div class="hb" style="border-top-color:var(--gold)">
+      <span class="hi">⭐</span>
+      <h4>Totipotency — What It Means</h4>
+      <p>The ability of a <strong>single cell</strong> to divide and produce all the different cell types in an organism — including every part of the plant.</p>
+      <br><p><strong>Easy analogy:</strong> Like a single LEGO instruction booklet that can build the entire castle — every plant cell holds the <em>complete</em> DNA "instruction manual" for the whole plant!</p>
+    </div>
+    <div class="hb" style="border-top-color:var(--orange)">
+      <span class="hi">🔄</span>
+      <h4>Dedifferentiation — Going Backwards</h4>
+      <p>When a <strong>specialized cell</strong> (like a leaf cell) goes backwards to become a simple, unspecialized cell again.</p>
+      <br><p><strong>Easy analogy:</strong> Like a trained doctor who goes back to being a first-year medical student — the cell "forgets" its job and becomes flexible again!</p>
+    </div>
+    <div class="hb" style="border-top-color:var(--g4)">
+      <span class="hi">🧫</span>
+      <h4>Callus — What Forms Next</h4>
+      <p>After dedifferentiation, cells multiply into a <strong>callus</strong> — a soft, unorganized lump of unspecialized cells. This is the raw material scientists guide into roots, shoots, or embryos.</p>
+    </div>
+    <div class="hb" style="border-top-color:var(--red)">
+      <span class="hi">🌱</span>
+      <h4>Somatic Embryo</h4>
+      <p>An embryo that forms from a regular body cell (not from a seed). It develops exactly like a seed embryo and can grow into a full plant — without any pollination!</p>
+    </div>
+  </div>
+
+  <div class="ib rv">
+    <h3>🎯 The Full Journey — Step by Step</h3>
+    <p>
+      <strong>Step 1:</strong> Take a plant body cell (Somatic Cell — SC)<br>
+      <strong>Step 2:</strong> Cell loses specialization → becomes a Totipotent Cell (TC)<br>
+      <strong>Step 3:</strong> Totipotent cells divide → form Embryogenic Callus (EC)<br>
+      <strong>Step 4:</strong> Callus develops → Somatic Embryo (SE)<br>
+      <strong>Step 5:</strong> Embryo matures → Full, healthy plant! 🌿
+    </p>
+  </div>
+</section>
+
+<!-- ══ 04 EXPLANTS ══ -->
+<section class="ts" id="explants">
+  <div class="th">
+    <div class="tn">04</div>
+    <div><div class="tlbl">Topic 4 · Starting Material</div><h2 class="ttl">Explants — Where It All Begins</h2></div>
+  </div>
+  <p class="tintro">An <strong>explant</strong> is the tiny piece of plant material you take to start tissue culture. The good news — almost any part of a plant can work as an explant!</p>
+
+  <div class="mr rv">
+    <div class="mi">
+      <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=85" alt="Different parts of a plant laid out showing leaves, stems, and roots that can be used as explants in tissue culture">
+      <div class="ic">📸 Plant parts that can be used as explants</div>
+    </div>
+    <div class="mv">
+      <iframe src="https://www.youtube.com/embed/l9BY4Q7Z8r8" allowfullscreen loading="lazy" title="Types of explants used in plant tissue culture with examples"></iframe>
+      <div class="vl">🎬 Explants in Plant Tissue Culture</div>
+    </div>
+  </div>
+
+  <div class="gl rv">
+    <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=400&q=80" alt="Green plant leaves — commonly used as leaf explants in tissue culture">
+    <img src="https://images.unsplash.com/photo-1463936575829-25148e1db1b8?w=400&q=80" alt="Plant stem cuttings — used as stem explants in tissue culture experiments">
+    <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=400&q=80" alt="Plant roots — used as root explants for specific tissue culture protocols">
+    <img src="https://images.unsplash.com/photo-1550159930-40066082a4fc?w=400&q=80" alt="Flower buds — used as floral explants for anther and pollen culture">
+    <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=400&q=80" alt="Banana suckers emerging from the base of a banana plant — key explant source">
+    <img src="https://images.unsplash.com/photo-1567306301408-9b74779a11af?w=400&q=80" alt="Ginger rhizome — underground stem used as explant for spice plant tissue culture">
+  </div>
+
+  <div class="cr rv">
+    <div class="card"><div class="cb"><span class="cci">🌿</span><span class="ctag">Most Common</span><h3>Roots, Stems & Leaves</h3><p>The most accessible plant parts. Used across hundreds of plant species. Easy to collect, easy to sterilize, and widely effective in TC protocols.</p></div></div>
+    <div class="card"><div class="cb"><span class="cci">🌱</span><span class="ctag">Vegetative</span><h3>Runners, Suckers & Stolons</h3><p><strong>Suckers</strong> (banana), <strong>stolons</strong> (strawberry), and <strong>runners</strong> are underground or creeping structures used for propagation of specific crop plants.</p></div></div>
+    <div class="card"><div class="cb"><span class="cci">🪨</span><span class="ctag">Underground</span><h3>Rhizomes</h3><p>Horizontal underground stems — found in <strong>ginger, turmeric, and bamboo</strong>. Popular explant source for spice crops and ornamental grasses.</p></div></div>
+    <div class="card"><div class="cb"><span class="cci">🌸</span><span class="ctag">Reproductive</span><h3>Pollen, Anthers & Embryos</h3><p>Parts from flowers or seeds. Used to produce haploid plants (anther culture) or rescue hybrid embryos that won't germinate naturally.</p></div></div>
+  </div>
+</section>
+
+<!-- ══ 05 TYPES ══ -->
+<section class="ts" id="types">
+  <div class="th">
+    <div class="tn">05</div>
+    <div><div class="tlbl">Topic 5 · Techniques</div><h2 class="ttl">Types of Plant Tissue Culture</h2></div>
+  </div>
+  <p class="tintro">Scientists have developed several tissue culture techniques, each suited to different plant parts and different goals. Here are the 7 main types, explained simply.</p>
+
+  <div class="mr rv">
+    <div class="mi">
+      <img src="https://images.unsplash.com/photo-1581093458791-9d42e3c2fd15?w=800&q=85" alt="Multiple different types of plant tissue culture growing in various laboratory flasks and petri dishes">
+      <div class="ic">📸 Different culture types in the laboratory</div>
+    </div>
+    <div class="mv">
+      <iframe src="https://www.youtube.com/embed/gEOH9fQ6FGU" allowfullscreen loading="lazy" title="Types of plant tissue culture explained with diagrams and examples"></iframe>
+      <div class="vl">🎬 Types of Plant Tissue Culture</div>
+    </div>
+  </div>
+
+  <ul class="sl rv">
+    <li><div class="sn">1</div><div class="sc"><strong>🧫 Callus Culture</strong><span>An explant is placed on media and its cells dedifferentiate into a callus — an unorganized, unspecialized lump of cells. This callus is the "clay" that can be shaped into roots, shoots, or embryos by changing the hormone balance. Very widely used in commercial TC!</span></div></li>
+    <li><div class="sn">2</div><div class="sc"><strong>🌾 Embryo Culture</strong><span>The embryo from a seed is taken out and grown in vitro. Used for <strong>hybrid seeds that can't germinate naturally</strong> (hybrid inviability). Also used for immature embryos from unripe fruits that would otherwise die before germinating.</span></div></li>
+    <li><div class="sn">3</div><div class="sc"><strong>🌸 Seed Culture (Orchid Culture)</strong><span>Orchid seeds are as small as dust and have no stored food — they can only germinate with fungal help in nature. In TC labs, orchid seeds are placed on nutrient media and they germinate beautifully. This is how millions of orchids are produced commercially worldwide!</span></div></li>
+    <li><div class="sn">4</div><div class="sc"><strong>🌿 Meristem Culture — Best for Disease-Free Plants!</strong><span>The growing tip of a shoot (the meristem) is taken and cultured. Since viruses almost never reach the meristem, plants produced this way are <strong>virtually virus-free</strong>. Used commercially for potato, strawberry, banana, sugarcane, and many other crops.</span></div></li>
+    <li><div class="sn">5</div><div class="sc"><strong>🔬 Protoplast Culture — Cell Fusion!</strong><span>The cell wall is removed using enzymes, leaving a "naked cell" called a protoplast. Two protoplasts from <strong>different species can be fused</strong> to create hybrid cells, which grow into new hybrid plants! Used in genetic improvement programs worldwide.</span></div></li>
+    <li><div class="sn">6</div><div class="sc"><strong>🌱 Organ Culture</strong><span>An entire organ — root, stem, leaf, or flower — is cultured while keeping its original structure and function. Used for studying organ development, biochemistry, and preserving the natural architecture of plant organs.</span></div></li>
+    <li><div class="sn">7</div><div class="sc"><strong>🌼 Pollen / Anther Culture — Haploid Plants!</strong><span>Pollen grains or anthers are cultured to produce <strong>haploid plants</strong> — plants with only half the normal chromosome number. These are then chemically doubled to create fully homozygous plants — very valuable in plant breeding for rapid variety development.</span></div></li>
+  </ul>
+</section>
+
+<!-- ══ 06 MEDIA ══ -->
+<section class="ts" id="media">
+  <div class="th">
+    <div class="tn">06</div>
+    <div><div class="tlbl">Topic 6 · Nutrition</div><h2 class="ttl">Plant Tissue Culture Media</h2></div>
+  </div>
+  <p class="tintro">Culture media is the special "food" that nourishes plant cells in the lab. Without the right media, nothing grows! Think of it as a perfectly balanced meal — carefully designed for plant cells.</p>
+
+  <div class="mr rv">
+    <div class="mi">
+      <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&q=85" alt="Laboratory worker in gloves carefully preparing plant tissue culture media in clean glass flasks">
+      <div class="ic">📸 Preparing and dispensing culture media in the laboratory</div>
+    </div>
+    <div class="mv">
+      <iframe src="https://www.youtube.com/embed/F-M5xBBdkh0" allowfullscreen loading="lazy" title="How plant tissue culture media is prepared step by step"></iframe>
+      <div class="vl">🎬 How Culture Media is Prepared</div>
+    </div>
+  </div>
+
+  <div class="hg rv">
+    <div class="hb"><span class="hi">⚗️</span><h4>Macronutrients</h4><p>Large-quantity minerals — Nitrogen (N), Phosphorus (P), Potassium (K), Calcium (Ca), Magnesium (Mg), Sulfur (S). Essential building blocks for all cell functions.</p></div>
+    <div class="hb"><span class="hi">🔩</span><h4>Micronutrients</h4><p>Small-quantity trace minerals — Iron, Manganese, Zinc, Copper, Boron, Molybdenum. Needed in tiny amounts but critical for enzyme activity.</p></div>
+    <div class="hb"><span class="hi">🍬</span><h4>Sugar (Carbon Source)</h4><p>Usually <strong>sucrose (3%)</strong>. Since cultured cells can't photosynthesize well inside sealed bottles, they need ready-made sugar as energy!</p></div>
+    <div class="hb"><span class="hi">💊</span><h4>Vitamins</h4><p>Thiamine (B1), Pyridoxine (B6), Nicotinic acid. Support cell metabolism and are essential for normal cell division.</p></div>
+    <div class="hb"><span class="hi">🧊</span><h4>Gelling Agent — Agar</h4><p>Agar turns liquid media into a <strong>firm jelly</strong> that cells sit on. Liquid media (no agar) is used for cell suspension cultures.</p></div>
+    <div class="hb"><span class="hi">⚖️</span><h4>pH Must Be 5.4–5.8</h4><p>Slightly acidic. Wrong pH stops growth and makes hormones useless. Always carefully measured before media is sterilized!</p></div>
+  </div>
+
+  <div class="tw rv">
+    <table>
+      <thead><tr><th>Media Name</th><th>Short</th><th>Best Used For</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Murashige &amp; Skoog</strong></td><td>MS</td><td>🌟 Standard TC — most widely used for almost all plants worldwide</td></tr>
+        <tr><td>Linsmaier &amp; Skoog</td><td>LS</td><td>Organ culture</td></tr>
+        <tr><td>Gamborg Medium</td><td>B5</td><td>Cell suspension cultures</td></tr>
+        <tr><td>Nitsch &amp; Nitsch</td><td>NN</td><td>Anther culture (haploid plants)</td></tr>
+        <tr><td>White's Medium</td><td>—</td><td>Shoot and callus culture</td></tr>
+        <tr><td>Quoirin &amp; Lepoivre</td><td>QL</td><td>Woody plants (trees and shrubs)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══ 07 HORMONES ══ -->
+<section class="ts" id="hormones">
+  <div class="th">
+    <div class="tn">07</div>
+    <div><div class="tlbl">Topic 7 · Control System</div><h2 class="ttl">Plant Growth Regulators (Hormones)</h2></div>
+  </div>
+  <p class="tintro">Hormones are the "remote control" of tissue culture! By changing the type and amount of hormones in the media, scientists can tell plant cells to form roots, form shoots, or just multiply as callus.</p>
+
+  <div class="mr rv">
+    <div class="mi">
+      <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&q=85" alt="Small bottles of plant growth regulator solutions including auxins and cytokinins on a laboratory bench">
+      <div class="ic">📸 Plant growth regulator solutions used in TC media</div>
+    </div>
+    <div class="mv">
+      <iframe src="https://www.youtube.com/embed/e5JUtrUv_Vs" allowfullscreen loading="lazy" title="Auxins cytokinins and other plant growth regulators in tissue culture"></iframe>
+      <div class="vl">🎬 Hormones in Plant Tissue Culture</div>
+    </div>
+  </div>
+
+  <div class="cr rv">
+    <div class="card">
+      <img class="ci" src="https://images.unsplash.com/photo-1631557776534-e0f2a128c4f4?w=400&q=80" alt="Plant roots growing vigorously showing the effect of high auxin concentration in culture media">
+      <div class="cb"><span class="cci">🌱</span><span class="ctag">Root Maker</span><h3>Auxins</h3><p><strong>High auxin = ROOTS grow!</strong><br>Examples: IAA, NAA, IBA<br><br>Auxins promote root development and cell elongation. IBA (Indole-3-Butyric Acid) is the most commonly used for rooting in banana (1.5 ppm), potato, and many other crops.</p></div>
+    </div>
+    <div class="card">
+      <img class="ci" src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=400&q=80" alt="Multiple green shoots growing from plant tissue showing effect of high cytokinin in culture media">
+      <div class="cb"><span class="cci">🌿</span><span class="ctag">Shoot Maker</span><h3>Cytokinins</h3><p><strong>High cytokinin = SHOOTS multiply!</strong><br>Examples: BAP, Kinetin, TDZ<br><br>Cytokinins promote cell division and shoot bud development. TDZ (Thidiazuron) at 0.5 ppm + NAA at 2 ppm is the UBKV protocol for banana!</p></div>
+    </div>
+    <div class="card">
+      <img class="ci" src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=400&q=80" alt="Callus tissue — an unorganized lump of undifferentiated plant cells growing in a flask">
+      <div class="cb"><span class="cci">⚖️</span><span class="ctag">Equal = Callus</span><h3>The Golden Rule</h3><p><strong>Equal auxin + cytokinin = CALLUS forms!</strong><br><br>When both hormones are balanced, cells form a callus — unspecialized and undifferentiated. Scientists use this rule to control what the cells become!</p></div>
+    </div>
+    <div class="card">
+      <img class="ci" src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=400&q=80" alt="Tall plant stems showing elongation effect of gibberellin hormone">
+      <div class="cb"><span class="cci">📏</span><span class="ctag">Elongation</span><h3>Gibberellins</h3><p>Promote <strong>stem elongation</strong> and seed germination. Less commonly used in tissue culture but helpful for elongating dwarf shoots before rooting. Abscisic acid (ABA) promotes dormancy and stress responses.</p></div>
+    </div>
+  </div>
+
+  <div class="ib rv">
+    <h3>🎯 Easy Memory Trick for Exams!</h3>
+    <p>
+      🌱 <strong>A</strong>uxin → <strong>A</strong>im for Roots &nbsp;&nbsp; (High auxin = roots grow)<br>
+      🌿 <strong>C</strong>ytokinin → <strong>C</strong>reates Shoots &nbsp;&nbsp; (High cytokinin = shoots multiply)<br>
+      ⚖️ <strong>Equal amounts</strong> → Callus forms (undifferentiated cell mass)<br><br>
+      The concentration and ratio depends on the plant species, the tissue used, and the goal of the experiment. Scientists fine-tune this like adjusting a recipe!
+    </p>
+  </div>
+</section>
+
+<!-- ══ 08 LABORATORY ══ -->
+<section class="ts" id="lab">
+  <div class="th">
+    <div class="tn">08</div>
+    <div><div class="tlbl">Topic 8 · Facility</div><h2 class="ttl">The Tissue Culture Laboratory</h2></div>
+  </div>
+  <p class="tintro">A tissue culture lab is a very special facility — not a regular lab! It has dedicated, specially designed rooms to keep everything absolutely clean and controlled. Let's take a tour!</p>
+
+  <div class="mr rv">
+    <div class="mi">
+      <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&q=85" alt="Modern plant tissue culture laboratory showing laminar flow hoods, culture racks with bottled plants, and sterile equipment">
+      <div class="ic">📸 A modern plant tissue culture laboratory</div>
+    </div>
+    <div class="mv">
+      <iframe src="https://www.youtube.com/embed/CKE5GS-AjxE" allowfullscreen loading="lazy" title="Complete tour of a plant tissue culture laboratory showing all rooms and equipment"></iframe>
+      <div class="vl">🎬 Lab Tour — All Rooms &amp; Equipment</div>
+    </div>
+  </div>
+
+  <div class="gl rv">
+    <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=400&q=80" alt="Laminar air flow hood in a tissue culture lab — the critical sterile workspace">
+    <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=400&q=80" alt="Autoclave machine used for sterilizing media and glassware in tissue culture">
+    <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=400&q=80" alt="Culture racks filled with bottles of growing plants in a controlled incubation room">
+  </div>
+
+  <div class="cr rv">
+    <div class="card"><div class="cb"><span class="cci">🧪</span><span class="ctag">Room 1</span><h3>Media Preparation Room</h3><p>All culture media is weighed, mixed, pH-adjusted, and dispensed into bottles here. Contains: analytical balance, pH meter, magnetic stirrer, distilled water supply.</p></div></div>
+    <div class="card"><div class="cb"><span class="cci">🔥</span><span class="ctag">Room 2</span><h3>Sterilization Room</h3><p>Houses the <strong>autoclave</strong> — uses high-pressure steam at 121°C to destroy all microorganisms in media, glassware, and instruments. Like a super-powered pressure cooker!</p></div></div>
+    <div class="card"><div class="cb"><span class="cci">💨</span><span class="ctag">Room 3 — Most Critical!</span><h3>Inoculation Room</h3><p>Contains the <strong>Laminar Air Flow (LAF) hood</strong> — blows HEPA-filtered sterile air over the workspace. This is where explants are placed into media under complete sterile conditions.</p></div></div>
+    <div class="card"><div class="cb"><span class="cci">🌡️</span><span class="ctag">Room 4</span><h3>Culture / Incubation Room</h3><p>Where bottled plants grow on metal racks under controlled <strong>light (16 hr/day), temperature (25±2°C)</strong> and humidity. This is where multiplication happens!</p></div></div>
+    <div class="card"><div class="cb"><span class="cci">🚿</span><span class="ctag">Room 5</span><h3>Washing Room</h3><p>All used glassware — bottles, Petri dishes, flasks — is thoroughly washed and cleaned here before it can be reused. Contamination-free cleaning is essential.</p></div></div>
+    <div class="card"><div class="cb"><span class="cci">💧</span><span class="ctag">Essential Equipment</span><h3>Double Distillation Unit</h3><p>Normal tap water has dissolved minerals and microbes. TC needs <strong>double-distilled (ultra-pure) water</strong> — purified twice — so no impurities interfere with the experiment.</p></div></div>
+  </div>
+</section>
+
+<!-- ══ 09 STERILIZATION ══ -->
+<section class="ts" id="sterilization">
+  <div class="th">
+    <div class="tn">09</div>
+    <div><div class="tlbl">Topic 9 · Cleanliness</div><h2 class="ttl">Sterilization — The #1 Rule</h2></div>
+  </div>
+  <p class="tintro">Contamination is the biggest enemy of tissue culture. Even a single bacterial spore landing on your media can destroy an entire experiment. That's why <em>everything</em> must be sterilized — completely!</p>
+
+  <div class="mr rv">
+    <div class="mi">
+      <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=85" alt="Autoclave machine with pressure gauges used for sterilizing tissue culture media and equipment">
+      <div class="ic">📸 Autoclave — the most critical sterilization equipment</div>
+    </div>
+    <div class="mv">
+      <iframe src="https://www.youtube.com/embed/pjPPFLvJCbo" allowfullscreen loading="lazy" title="Methods of sterilization in plant tissue culture including autoclave and surface sterilization"></iframe>
+      <div class="vl">🎬 Sterilization Methods in Tissue Culture</div>
+    </div>
+  </div>
+
+  <ul class="sl rv">
+    <li><div class="sn">💧</div><div class="sc"><strong>Wet Sterilization — Autoclave (Most Important!)</strong><span>Steam at <strong>121°C, 15 psi pressure, for 20 minutes</strong>. Kills ALL microorganisms including heat-resistant bacterial spores. Used for: culture media, glassware, cotton plugs, Petri dishes, distilled water. This is the gold standard!</span></div></li>
+    <li><div class="sn">🔥</div><div class="sc"><strong>Flame Sterilization — Inside the Laminar Hood</strong><span>Metal tools like <strong>scalpels and forceps</strong> are dipped in 70% ethanol and passed quickly through an alcohol flame before each use. Done repeatedly during inoculation — every time you make a cut or transfer, tools are re-flamed!</span></div></li>
+    <li><div class="sn">🧪</div><div class="sc"><strong>Surface Sterilization — For the Explant Itself</strong><span>The plant piece is sterilized using chemicals:<br>• <strong>Tween-20 or Bavistin</strong> — removes surface fungi<br>• <strong>HgCl₂ (0.1%)</strong> — powerful bactericide (must be rinsed off!)<br>• <strong>Sodium hypochlorite (1–2%)</strong> — household bleach solution<br>• <strong>70% Ethanol</strong> — surface disinfection<br>After treatment: rinse 3–5 times with sterile distilled water.</span></div></li>
+    <li><div class="sn">🌬️</div><div class="sc"><strong>HEPA Filtration — Laminar Air Flow Hood</strong><span>The LAF hood uses <strong>HEPA filters</strong> that remove 99.97% of particles from air — including bacteria and fungal spores. The entire work surface stays sterile throughout the inoculation process.</span></div></li>
+  </ul>
+
+  <div class="ib rv">
+    <h3>⚠️ What Happens If Sterilization Fails?</h3>
+    <p>You'll see <strong>white, green, or black fuzzy growth</strong> on the media (fungal contamination) or cloudy media (bacterial contamination). The entire bottle must be discarded and autoclaved before disposal. One contaminated bottle can spread to neighboring bottles if not handled carefully. This is why every step is performed with extreme care and precision!</p>
+  </div>
+</section>
+
+<!-- ══ 10 MICROPROPAGATION ══ -->
+<section class="ts" id="process">
+  <div class="th">
+    <div class="tn">10</div>
+    <div><div class="tlbl">Topic 10 · Step-by-Step</div><h2 class="ttl">The Micropropagation Process</h2></div>
+  </div>
+  <p class="tintro">Micropropagation has 6 clear stages — each one with a specific purpose. Follow this like a recipe: miss a step and the batch fails. Do it right and you can multiply one plant into thousands!</p>
+
+  <div class="mr rv">
+    <div class="mi">
+      <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=800&q=85" alt="Sequence showing stages of micropropagation from a tiny explant through callus multiplication to rooted plantlets ready for hardening">
+      <div class="ic">📸 The full journey — from tiny explant to healthy plant</div>
+    </div>
+    <div class="mv">
+      <iframe src="https://www.youtube.com/embed/h1kLBVOCNOU" allowfullscreen loading="lazy" title="Stages of micropropagation from stage 0 to stage 5 explained with examples"></iframe>
+      <div class="vl">🎬 All Stages of Micropropagation</div>
+    </div>
+  </div>
+
+  <ul class="sl rv">
+    <li><div class="sn">0</div><div class="sc"><strong>Stage 0 — Choosing the Right Parent Plant</strong><span>Select the <strong>healthiest, most productive</strong> parent plant. Sometimes pre-grown indoors for a few weeks to reduce its pathogen load. The quality of your output plants depends directly on the quality of this starting plant!</span></div></li>
+    <li><div class="sn">I</div><div class="sc"><strong>Stage I — Establishing the Culture</strong><span>Surface-sterilize the explant. Inside the laminar hood, cut to the right size and place aseptically on sterile media. Seal and label the bottle. Wait 2–4 weeks for the first signs of growth. This creates the "mother culture."</span></div></li>
+    <li><div class="sn">II</div><div class="sc"><strong>Stage II — Multiplication (The Magic Stage!)</strong><span>The growing culture is cut into pieces and transferred to <strong>fresh multiplication media</strong> (high cytokinin). Each piece becomes a new culture. Repeat 4–6 times — one plant becomes hundreds or thousands in just a few months. This is where commercial scale-up happens!</span></div></li>
+    <li><div class="sn">III</div><div class="sc"><strong>Stage III — Shooting &amp; Rooting</strong><span>Individual shoots are separated and placed on <strong>rooting media</strong> (high auxin like IBA). Within 2–3 weeks, roots emerge from the base of each shoot. Now it's a complete plantlet — ready to leave the bottle!</span></div></li>
+    <li><div class="sn">IV</div><div class="sc"><strong>Stage IV — Primary Hardening</strong><span>Rooted plantlets are carefully removed from bottles (roots are fragile!), gently washed, and planted in a sterile growing mix in small pots. Kept inside a <strong>high-humidity greenhouse</strong> initially to prevent drying out.</span></div></li>
+    <li><div class="sn">V</div><div class="sc"><strong>Stage V — Secondary Hardening</strong><span>Plants move to a <strong>shade net house</strong> with 50% shade for 4–6 weeks, then gradually to full sunlight. After complete hardening, they're ready for <strong>open field planting</strong> — and they will outperform traditional planting material!</span></div></li>
+  </ul>
+
+  <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1200&q=80" class="bimg rv" alt="Healthy green plants growing in rows showing the final result of successful micropropagation and hardening">
+</section>
+
+<!-- ══ 11 HARDENING ══ -->
+<section class="ts" id="hardening">
+  <div class="th">
+    <div class="tn">11</div>
+    <div><div class="tlbl">Topic 11 · Transition</div><h2 class="ttl">Hardening — From Lab to Real World</h2></div>
+  </div>
+  <p class="tintro">TC plants are like children who grew up in a perfectly protected environment. Moving them suddenly to the harsh outdoors would be a fatal shock. Hardening is the gentle process of helping them adapt — step by step.</p>
+
+  <div class="mr rv">
+    <div class="mi">
+      <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=85" alt="Greenhouse facility with hundreds of small TC plantlets in trays being hardened under controlled conditions">
+      <div class="ic">📸 Primary hardening greenhouse at UBKV</div>
+    </div>
+    <div class="mv">
+      <iframe src="https://www.youtube.com/embed/xBVVfRpBoUs" allowfullscreen loading="lazy" title="Hardening of tissue cultured plants explained with greenhouse and shade net house steps"></iframe>
+      <div class="vl">🎬 Hardening of TC Plants Explained</div>
+    </div>
+  </div>
+
+  <div class="ib rv">
+    <h3>🏡 Why TC Plants Are So Delicate at First</h3>
+    <p>Inside a culture bottle, plants live in a perfect world:</p>
+    <ul>
+      <li>100% relative humidity — inside a sealed bottle</li>
+      <li>Complete sterility — no bacteria, no fungi anywhere</li>
+      <li>Ready-made sugar in media — no need for photosynthesis</li>
+      <li>Constant, controlled artificial light and temperature</li>
+      <li>Zero wind, zero stress, zero variation</li>
+    </ul>
+    <br><p>The real world is the complete opposite! Without gradual hardening, most TC plants will wilt and die within 1–2 days of being taken out of culture.</p>
+  </div>
+
+  <div class="hg rv">
+    <div class="hb"><span class="hi">🏠</span><h4>Step 1 · Primary Hardening</h4><p>Plants placed in sterile growing mix <strong>(Soil : Vermicompost : FYM = 2:2:1)</strong> inside a humid greenhouse. Misted frequently. Leaves develop cuticles. Kept for 3–4 weeks.</p></div>
+    <div class="hb"><span class="hi">🌤️</span><h4>Step 2 · Shade Net House</h4><p>50% shade cloth filters sunlight. Humidity gradually reduced. Plants develop thicker leaves, stronger cuticles, and more robust root systems over 4–6 weeks.</p></div>
+    <div class="hb"><span class="hi">☀️</span><h4>Step 3 · Open Field</h4><p>Full sun, natural humidity, wind, soil microbes — the real world! After 2–3 weeks of exposure, plants are ready for commercial planting at full scale.</p></div>
+    <div class="hb"><span class="hi">📈</span><h4>Survival Rate</h4><p>Properly hardened TC plants show <strong>85–95% field survival</strong>. Poorly hardened plants may show less than 30% survival. Hardening is never skipped!</p></div>
+  </div>
+</section>
+
+<!-- ══ 12 APPLICATIONS ══ -->
+<section class="ts" id="applications">
+  <div class="th">
+    <div class="tn">12</div>
+    <div><div class="tlbl">Topic 12 · Real World Impact</div><h2 class="ttl">Applications in Agriculture</h2></div>
+  </div>
+  <p class="tintro">Plant tissue culture is not just laboratory science — it has transformed farming, conservation, medicine, and food production around the world. Here's how it's being used <em>right now</em>.</p>
+
+  <div class="mr rv">
+    <div class="mi">
+      <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=85" alt="Large commercial TC plant nursery with thousands of identical healthy plants growing in organized rows">
+      <div class="ic">📸 Commercial TC nursery — thousands of identical, healthy plants</div>
+    </div>
+    <div class="mv">
+      <iframe src="https://www.youtube.com/embed/LKqGiDHFTtc" allowfullscreen loading="lazy" title="Applications of plant tissue culture in agriculture and industry worldwide"></iframe>
+      <div class="vl">🎬 Real Applications of Plant Tissue Culture</div>
+    </div>
+  </div>
+
+  <div class="cr rv">
+    <div class="card"><img class="ci" src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=400&q=80" alt="Banana plantation with uniform high-yielding plants from tissue culture"><div class="cb"><span class="ctag">Most Important</span><h3>🍌 Rapid Mass Multiplication</h3><p>Thousands of identical, disease-free plants from one healthy parent in weeks. One TC banana plant → 500,000 plants in one year. Impossible with traditional methods!</p></div></div>
+    <div class="card"><img class="ci" src="https://images.unsplash.com/photo-1516014930560-d89f55fae9f3?w=400&q=80" alt="Rare endangered plant species being propagated in a tissue culture laboratory"><div class="cb"><span class="ctag">Conservation</span><h3>🌍 Saving Endangered Plants</h3><p>Rare plants on the verge of extinction are rescued and multiplied in TC labs — a living "gene bank" for plant biodiversity that cannot be replaced.</p></div></div>
+    <div class="card"><img class="ci" src="https://images.unsplash.com/photo-1628352081506-83c43123a1c2?w=400&q=80" alt="Genetic modification of plants in a laboratory showing gene transfer technology"><div class="cb"><span class="ctag">Biotechnology</span><h3>🧬 Genetic Improvement</h3><p>TC cells can be genetically modified to add useful traits: pest resistance, drought tolerance, higher yield, better nutrition. TC is the essential first step for GM crops!</p></div></div>
+    <div class="card"><img class="ci" src="https://images.unsplash.com/photo-1581093458791-9d42e3c2fd15?w=400&q=80" alt="Cryopreservation tanks containing liquid nitrogen for long-term storage of plant genetic material"><div class="cb"><span class="ctag">Long-term Storage</span><h3>❄️ Cryopreservation</h3><p>TC is the prerequisite for freezing plant material at -196°C in liquid nitrogen. Plants can be stored for decades and revived when needed — a "frozen library" of genetics!</p></div></div>
+    <div class="card"><img class="ci" src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=400&q=80" alt="Cell suspension culture bioreactor producing plant secondary metabolites for pharmaceutical use"><div class="cb"><span class="ctag">Medicine</span><h3>⚗️ Biochemical Production</h3><p>Cell suspension cultures produce valuable plant compounds: alkaloids, flavonoids, taxol (anti-cancer), and other medicines — without needing to harvest whole plants.</p></div></div>
+    <div class="card"><img class="ci" src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=400&q=80" alt="Disease-free certified TC plants ready for commercial planting showing healthy uniform growth"><div class="cb"><span class="ctag">Disease Control</span><h3>🦠 Virus-Free Production</h3><p>Meristem culture produces plants free from viruses, bacteria, and fungi. The most reliable method for certified disease-free planting material for potatoes, strawberries, bananas.</p></div></div>
+  </div>
+</section>
+
+<!-- ══ 13 BANANA TC ══ -->
+<section class="ts" id="banana">
+  <div class="th">
+    <div class="tn">13</div>
+    <div><div class="tlbl">Topic 13 · Case Study</div><h2 class="ttl">🍌 Banana Tissue Culture at UBKV</h2></div>
+  </div>
+  <p class="tintro">Banana tissue culture is one of the most successful commercial TC applications in India. The UBKV Biochemistry Department developed an effective protocol for the Coochbehar region of West Bengal.</p>
+
+  <div class="mr rv">
+    <div class="mi">
+      <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=800&q=85" alt="Bumper banana harvest in Coochbehar district showing large bunches of bananas from TC plants">
+      <div class="ic">📸 Bumper banana harvest from TC plants — Coochbehar district</div>
+    </div>
+    <div class="mv">
+      <iframe src="https://www.youtube.com/embed/zR3W8gOGSzk" allowfullscreen loading="lazy" title="Complete banana tissue culture process from explant to field planting with bumper harvest"></iframe>
+      <div class="vl">🎬 Complete Banana TC Process</div>
+    </div>
+  </div>
+
+  <div class="ib rv">
+    <h3>📊 Why Banana TC is Critically Important in Coochbehar</h3>
+    <p>Banana cultivation has grown enormously:</p>
+    <ul>
+      <li>2005–06: 9,000 Ha area · 22,500 MT production</li>
+      <li>2013–14: 21,750 Ha area · 43,255 MT production</li>
+      <li>2019–20: 28,470 Ha area · 53,012 MT production</li>
+    </ul>
+    <br><p>In 2020–21, over <strong>43 lakh (4.3 million) TC banana saplings</strong> were required in West Bengal — but only 7 lakh (700,000) were available. This huge gap shows the massive need for TC banana production!</p>
+  </div>
+
+  <div class="tw rv">
+    <table>
+      <thead><tr><th>Stage</th><th>What Happens</th><th>Media / Chemicals Used</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Explant Selection</strong></td><td>Healthy banana sucker selected from mother plot</td><td>Disease-free mother plant</td></tr>
+        <tr><td><strong>Disinfection</strong></td><td>Surface sterilization of sucker</td><td>Tween-20, Bavistin, Plantomycin, 0.1% HgCl₂</td></tr>
+        <tr><td><strong>Regeneration</strong></td><td>Shoot bud establishment</td><td>MS + 0.5 ppm TDZ + 2 ppm NAA</td></tr>
+        <tr><td><strong>Multiplication</strong></td><td>Shoot multiplication (×10–20 per cycle)</td><td>MS + 0.5 ppm TDZ + 2 ppm NAA</td></tr>
+        <tr><td><strong>Rooting</strong></td><td>Root development on individual shoots</td><td>MS + 1.5 ppm IBA</td></tr>
+        <tr><td><strong>Hardening</strong></td><td>Adaptation to soil conditions</td><td>Soil + Vermicompost + FYM (2:2:1)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gl rv">
+    <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=400&q=80" alt="Banana sucker emerging from the base of a banana plant used as explant starting material">
+    <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=400&q=80" alt="Banana shoot multiplication stage showing multiple shoots growing from culture in laboratory flask">
+    <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&q=80" alt="Hardened banana TC plants ready for field planting showing robust healthy growth">
+  </div>
+</section>
+
+<!-- ══ 14 POTATO TC ══ -->
+<section class="ts" id="potato">
+  <div class="th">
+    <div class="tn">14</div>
+    <div><div class="tlbl">Topic 14 · Case Study</div><h2 class="ttl">🥔 Potato TC — Seed Production System</h2></div>
+  </div>
+  <p class="tintro">Potato is one of the world's most important food crops. Viral diseases drastically reduce potato yield. TC is the <em>only</em> reliable way to produce certified, virus-free seed potatoes at scale.</p>
+
+  <div class="mr rv">
+    <div class="mi">
+      <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=800&q=85" alt="Potato minitubers produced through tissue culture aeroponics system ready for planting">
+      <div class="ic">📸 TC potato plantlets and minitubers — start of certified seed production</div>
+    </div>
+    <div class="mv">
+      <iframe src="https://www.youtube.com/embed/Lf-TW6FN0Cc" allowfullscreen loading="lazy" title="Potato tissue culture and certified seed potato production system G0 to G4"></iframe>
+      <div class="vl">🎬 Potato TC &amp; Certified Seed Production</div>
+    </div>
+  </div>
+
+  <ul class="sl rv">
+    <li><div class="sn">G0</div><div class="sc"><strong>G0 — Tissue Culture Stage</strong><span>Meristem culture produces virus-free plantlets. These are multiplied in the TC lab, then transferred to an <strong>aeroponics system</strong> (roots hang in air, misted with nutrients) or shed net house to produce tiny G0 minitubers — each about the size of a marble.</span></div></li>
+    <li><div class="sn">G1</div><div class="sc"><strong>G1 — First Field Generation (Shed Net House)</strong><span>G0 minitubers are planted in a protected shed net house. Plants are regularly tested for viruses and diseases. The tubers produced are <strong>G1 seed</strong> — still highly pure and certified disease-free.</span></div></li>
+    <li><div class="sn">G2</div><div class="sc"><strong>G2 — Second Generation (Shed Net House)</strong><span>G1 seed is planted again under shade net conditions. Disease monitoring continues at every stage. G2 seed is still certified for sale to specialized nurseries and seed producers.</span></div></li>
+    <li><div class="sn">G3-4</div><div class="sc"><strong>G3 &amp; G4 — Open Field Production</strong><span>From G3 onwards, seed potato is grown in open fields. By G4, enough quantity is produced to supply farmers at commercial scale. G4 seed is what most farmers plant in their fields for food crop production.</span></div></li>
+  </ul>
+
+  <div class="hg rv">
+    <div class="hb"><span class="hi">🚀</span><h4>Aeroponics System</h4><p>Potato TC plantlets grow with roots hanging in air, misted with nutrient solution. Each plant produces 5–10 minitubers — highly efficient for G0 production with no soil diseases!</p></div>
+    <div class="hb"><span class="hi">🛡️</span><h4>Why Virus-Free Matters</h4><p>Potato viruses (PVX, PVY, PLRV) can reduce yield by <strong>30–80%</strong>! TC meristem culture eliminates virtually all viruses, restoring the full yield potential of the variety.</p></div>
+    <div class="hb"><span class="hi">📋</span><h4>Certification System</h4><p>Each generation (G0–G4) is inspected and certified by government agencies. Only certified seed potato can be legally sold to farmers in regulated markets.</p></div>
+    <div class="hb"><span class="hi">🌾</span><h4>Farmer Benefit</h4><p>TC seed potato gives <strong>25–40% higher yield</strong> compared to farmer-saved seed, with better disease resistance and more uniform, high-quality crop.</p></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div style="font-size:2.8rem;margin-bottom:1rem">🌿</div>
+  <p style="font-size:1.15rem"><strong>Plant Tissue Culture — Complete Easy Learning Guide</strong></p>
+  <p>Based on the lecture by <strong>Dr. Nandita Sahana</strong><br>
+  Assistant Professor · Department of Biochemistry<br>
+  <strong>Uttar Banga Krishi Vishwavidyalaya (UBKV)</strong></p>
+  <p style="margin-top:1.2rem;opacity:.45;font-size:.82rem">Images from Unsplash (CC0) · Videos from YouTube · For educational use only</p>
+</footer>
+
+</main>
+
+<script>
+// SIDEBAR TOGGLE
+const sb=document.getElementById('sidebar'),ov=document.getElementById('ov'),mb=document.getElementById('mBtn');
+mb.addEventListener('click',()=>{sb.classList.toggle('open');ov.classList.toggle('show');});
+ov.addEventListener('click',()=>{sb.classList.remove('open');ov.classList.remove('show');});
+document.querySelectorAll('.ni').forEach(l=>l.addEventListener('click',()=>{sb.classList.remove('open');ov.classList.remove('show');}));
+
+// PROGRESS BAR
+const prog=document.getElementById('prog');
+window.addEventListener('scroll',()=>{prog.style.transform=`scaleX(${window.scrollY/(document.body.scrollHeight-window.innerHeight)})`;});
+
+// ACTIVE NAV
+const secs=document.querySelectorAll('section[id]');
+const links=document.querySelectorAll('.ni');
+new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      links.forEach(l=>l.classList.remove('active'));
+      const a=document.querySelector(`.ni[href="#${e.target.id}"]`);
+      if(a)a.classList.add('active');
+    }
+  });
+},{threshold:0.25,rootMargin:'-50px 0px -55% 0px'}).observe.call(new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));const a=document.querySelector(`.ni[href="#${e.target.id}"]`);if(a)a.classList.add('active');}});
+},{threshold:0.25,rootMargin:'-50px 0px -55% 0px'}),secs[0]);
+
+// simpler active nav
+const io2=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));const a=document.querySelector(`.ni[href="#${e.target.id}"]`);if(a)a.classList.add('active');}});
+},{threshold:0.3});
+secs.forEach(s=>io2.observe(s));
+
+// SCROLL REVEAL
+const rvs=document.querySelectorAll('.rv');
+new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');}});},{threshold:0.07}).observe.call(
+  new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');}});},{threshold:0.07}),rvs[0]);
+const rvObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');rvObs.unobserve(e.target);}});},{threshold:0.07});
+rvs.forEach(r=>rvObs.observe(r));
+
+// FONT SIZE
+let fs=18;const root=document.documentElement;
+document.getElementById('fu').addEventListener('click',()=>{fs=Math.min(fs+2,30);root.style.fontSize=fs+'px';});
+document.getElementById('fd').addEventListener('click',()=>{fs=Math.max(fs-2,14);root.style.fontSize=fs+'px';});
+document.getElementById('fr').addEventListener('click',()=>{fs=18;root.style.fontSize='18px';});
+</script>
+</body>
+</html>
